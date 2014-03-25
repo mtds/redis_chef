@@ -8,7 +8,7 @@
 # Redis server. 
 #
 
-# Used by the Chef recipe:
+# Used only by the Chef recipe:
 default[:redis][:user]      =   "redis"
 
 #
@@ -46,4 +46,7 @@ default[:redis][:appendfsync] = "everysec"
 #
 # Redis VirtualMemory overcommit:
 # (refer to: http://redis.io/topics/faq)
+# This setting will change:
+# /proc/sys/vm/overcommit_memory
+# of the Linux kernel.
 default[:redis][:vm_overcommit] = 0
