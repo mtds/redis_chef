@@ -45,8 +45,13 @@ port <%= node[:redis][:port] %>
 # incoming connections. There is no default, so Redis will not listen
 # on a unix socket when not specified.
 #
+<% if node[:redis][:unixsocket] -%>
+unixsocket /tmp/redis.sock
+unixsocketperm 755
+<% else -%>
 # unixsocket /tmp/redis.sock
 # unixsocketperm 755
+<% end -%>
 
 # Close the connection after a client is idle for N seconds (0 to disable)
 timeout <%= node[:redis][:timeout] %>
