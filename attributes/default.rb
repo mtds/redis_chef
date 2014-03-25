@@ -14,7 +14,7 @@ default[:redis][:user]      =   "redis"
 #
 # Redis specific attributes:
 #
-default[:redis][:config]    =   "/etc/redis.conf"
+default[:redis][:config]    =   "/etc/redis/redis.conf"
 default[:redis][:pidfile]   =   "/var/run/redis.pid"
 default[:redis][:port]      =   6379
 default[:redis][:bind]      =   false
