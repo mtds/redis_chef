@@ -21,13 +21,13 @@ default[:redis][:syslog_enabled] =  false
 default[:redis][:syslog_ident]   =  "redis"
 default[:redis][:syslog_facility] = "local0"
 default[:redis][:databases] =  16
- default[:redis][:save_to_disk] = {
+default[:redis][:save_to_disk] = {
    900 => 1,
    300 => 10,
    60  => 10000
 }
 default[:redis][:dbfilename] = "redis_dump.rdb"
-default[:redis][:datadir] = "/var/db/redis"
+default[:redis][:datadir] = "/var/lib/redis"
 default[:redis][:slaveof] = false
 default[:redis][:masterauth] = false
 default[:redis][:slave_serve_stale_data] = "yes"
