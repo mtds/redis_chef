@@ -10,11 +10,11 @@
 package "redis-server"
 
 user node[:redis][:user] do
-  home node[:redis][:data_dir]
+  home node[:redis][:datadir]
   system true
 end
 
-directory node[:redis][:data_dir] do
+directory node[:redis][:datadir] do
   owner node[:redis][:user]
   mode "0750"
 end
