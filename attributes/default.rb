@@ -37,3 +37,7 @@ default[:redis][:requirepass] = false
 default[:redis][:rename_command] = false
 default[:redis][:appendonly] = "no"
 default[:redis][:appendfsync] = "everysec"
+#
+# Redis VirtualMemory overcommit:
+# (refer to: http://redis.io/topics/faq)
+define[:redis][:vm_overcommit] = 0
