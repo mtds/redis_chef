@@ -13,13 +13,7 @@ user node[:redis][:user] do
   system true
 end
 
-directory node[:redis][:config] do
-  owner "root"
-  group "root"
-  mode "0755"
-end
-
-directory node[:redis][:db_dir] do
+directory node[:redis][:data_dir] do
   owner node[:redis][:user]
   mode "0750"
 end
