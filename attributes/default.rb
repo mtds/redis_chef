@@ -8,6 +8,12 @@
 # Redis server. 
 #
 
+# Used by the Chef recipe:
+default[:redis][:user]      =   "redis"
+
+#
+# Redis specific attributes:
+#
 default[:redis][:config]    =   "/etc/redis.conf"
 default[:redis][:pidfile]   =   "/var/run/redis.pid"
 default[:redis][:port]      =   6379
