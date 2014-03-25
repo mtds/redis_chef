@@ -6,7 +6,8 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-package "redis"
+
+package "redis-server"
 
 user node[:redis][:user] do
   home node[:redis][:data_dir]
