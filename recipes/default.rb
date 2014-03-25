@@ -19,7 +19,7 @@ directory node[:redis][:datadir] do
   mode "0750"
 end
 
-service "redis" do
+service "redis-server" do
   supports :reload => false, :restart => true, :start => true, :stop => true
   action [ :enable, :start ]
 end
@@ -35,5 +35,5 @@ end
 template "#{node[:redis][:config]}" do
   source "redis.conf.erb"
   mode "0644"
-  notifies :restart, "service[redis]"
+  notifies :restart, "service[redis-server]"
 end
