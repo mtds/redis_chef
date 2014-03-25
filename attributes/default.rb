@@ -40,4 +40,4 @@ default[:redis][:appendfsync] = "everysec"
 #
 # Redis VirtualMemory overcommit:
 # (refer to: http://redis.io/topics/faq)
-define[:redis][:vm_overcommit] = 0
+default[:redis][:vm_overcommit] = 0
