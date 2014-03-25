@@ -23,6 +23,14 @@ service "redis" do
   action [ :enable, :start ]
 end
 
+# Check/Set the overcommit of the virtual memory:
+if node[:redis][:vm_overcommit] == 1
+  execute "echo 1 > /proc/sys/vm/overcommit_memory" do
+    not_if "[ $(cat /proc/sys/vm/overcommit_memory) -eq 1 ]"
+    notifies :restart, resources(:service => "redis"), :delayed
+  end
+end
+
 template "#{node[:redis][:config]}" do
   source "redis.conf.erb"
   mode "0644"
