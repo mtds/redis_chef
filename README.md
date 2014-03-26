@@ -44,8 +44,9 @@ attribute.
 Info available at:
 http://redis.io/topics/clients
 
-For Redis 2.4 it can still be necessary to use change the
-ulimit settings. Look at the node[:redis][:ulimit*] attributes.
+Ulimit: through the /etc/default/redis-server file is it possible to set a
+value for 'ulimit -n' before starting the redis daemon. It is possible to
+tweak these setting using the node[:redis][:ulimit*] attributes.
 
 Usage
 =====
