@@ -33,8 +33,17 @@ if node[:redis][:vm_overcommit] == 1
   end
 end
 
-template "#{node[:redis][:config]}" do
-  source "redis.conf.erb"
-  mode "0644"
-  notifies :restart, "service[redis-server]"
+# Choose the template depending on the redis version available:
+if node[:redis][:version].to_f > 2.4
+ template "#{node[:redis][:config]}" do
+   source "redis.conf.erb"
+   mode "0644"
+   notifies :restart, "service[redis-server]"
+ end
+else
+  template "#{node[:redis][:config]}" do
+   source "redis-2.4.conf.erb"
+   mode "0644"
+   notifies :restart, "service[redis-server]"
+ end
 end
