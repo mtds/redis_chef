@@ -5,10 +5,19 @@ This is a very basic Redis cookbook. It just provide a
 default recipe to install a basic Redis server instance,
 with a certain amount of customizable attributes.
 
+** Note **: 
+Redis versions up to 2.4 will use a different template
+for the configuration file, due to the fact that starting
+from the 2.6.x branch there are more options available
+and none of them is back compatible with older versions.
+
 Requirements
 ============
 
 No specific requirements/dependencies.
+
+This cookbook was tested only on Debian Squeeze/Wheezy.
+Deployment on Ubuntu may fail due to the use of Upstart.
 
 Attributes
 ==========
