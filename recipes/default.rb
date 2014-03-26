@@ -12,6 +12,7 @@ package "redis-server"
 user node[:redis][:user] do
   home node[:redis][:datadir]
   system true
+  shell "/bin/false"
 end
 
 directory node[:redis][:datadir] do
