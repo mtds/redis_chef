@@ -42,6 +42,7 @@ default[:redis][:repl_ping_slave_period] = 10
 default[:redis][:repl_timeout] = 60
 default[:redis][:requirepass] = false
 default[:redis][:rename_command] = false
+default[:redis][:maxclients] = 1024
 default[:redis][:appendonly] = "no"
 default[:redis][:appendfsync] = "everysec"
 #
