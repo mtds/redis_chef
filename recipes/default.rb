@@ -33,6 +33,14 @@ if node[:redis][:vm_overcommit] == 1
   end
 end
 
+# Set the ulimit (-n) used by the redis init script:
+if node[:redis][:ulimit]
+   template "#{node[:redis][:ulimit_file]}" do
+     source "debian_default.erb"
+     mode "0644"
+   end
+end
+
 # Choose the template depending on the redis version available:
 if node[:redis][:version].to_f > 2.4
 
@@ -44,18 +52,10 @@ if node[:redis][:version].to_f > 2.4
 
 else
 
-  # Only for Redis version till 2.4:
-  if node[:redis][:ulimit]
-    template "#{node[:redis][:ulimit_file]}" do
-     source "debian_default.erb"
-     mode "0644"
-    end
-  end
-
   template "#{node[:redis][:config]}" do
-   source "redis-2.4.conf.erb"
-   mode "0644"
-   notifies :restart, "service[redis-server]"
- end
+    source "redis-2.4.conf.erb"
+    mode "0644"
+    notifies :restart, "service[redis-server]"
+  end
 
 end
