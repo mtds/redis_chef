@@ -32,6 +32,7 @@ default[:redis][:save_to_disk] = {
    300 => 10,
    60  => 10000
 }
+default[:redis][:rdbcompression] = "yes"
 default[:redis][:dbfilename] = "redis_dump.rdb"
 default[:redis][:datadir] = "/var/lib/redis"
 default[:redis][:slaveof] = false
