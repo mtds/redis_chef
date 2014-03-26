@@ -20,7 +20,7 @@ default[:redis][:ulimit_file]  =  "/etc/default/redis-server"
 # Redis specific attributes:
 #
 default[:redis][:config]    =   "/etc/redis/redis.conf"
-default[:redis][:pidfile]   =   "/var/run/redis.pid"
+default[:redis][:pidfile]   =   "/var/run/redis/redis-server.pid"
 default[:redis][:port]      =   6379
 default[:redis][:bind]      =   false
 default[:redis][:unixsocket] = false
