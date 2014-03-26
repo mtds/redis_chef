@@ -35,6 +35,18 @@ can be found under attributes/default.rb, while
 you have to look at the heavily commented redis.conf.erb
 template to look for a complete explanation.
 
+** Max clients connections **:
+When Redis start to spew error messages like:
+Accepting client connection: accept: Too many open files
+then you'll have to increase the node[:redis][:maxclients]
+attribute.
+
+Info available at:
+http://redis.io/topics/clients
+
+For Redis 2.4 it can still be necessary to use change the
+ulimit settings. Look at the node[:redis][:ulimit*] attributes.
+
 Usage
 =====
 
