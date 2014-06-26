@@ -11,7 +11,7 @@
 # Used only by the Chef recipe:
 default[:redis][:user]      =   "redis"
 
-# Configure ulimit (** only for Redis 2.4 **):
+# Configure ulimit:
 default[:redis][:ulimit]       =  false
 default[:redis][:ulimit_arg]   =  2048
 default[:redis][:ulimit_file]  =  "/etc/default/redis-server"
