@@ -10,6 +10,7 @@
 
 # Used only by the Chef recipe:
 default[:redis][:user]      =   "redis"
+default[:redis][:version]   =   2.4 # Default version of Redis on Wheezy.
 
 # Configure ulimit:
 default[:redis][:ulimit]       =  false
