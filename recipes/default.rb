@@ -7,6 +7,10 @@
 # All rights reserved - Do Not Redistribute
 #
 
+class Chef::Recipe
+  include Sys::Secret
+end
+
 package "redis-server"
 
 user node[:redis][:user] do
@@ -39,6 +43,18 @@ if node[:redis][:ulimit]
      source "debian_default.erb"
      mode "0644"
    end
+end
+
+# Redis password is generated as a random hex number:
+node.set[:redis][:requirepass] = SecureRandom.hex
+
+# Holds the encrypted data for all nodes
+node.default_unless[:redis][:secrets] = Hash.new
+
+# Search for all nodes sharing the secret
+search(:node,"name:lxmtin*").each do |n|
+# encrypt the secret for each node using the public key
+    node.normal[:redis][:secrets][n.fqdn] = encrypt(node[:redis][:requirepass],n.fqdn)
 end
 
 # Choose the template depending on the redis version available:
