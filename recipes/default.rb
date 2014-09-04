@@ -45,8 +45,10 @@ if node[:redis][:ulimit]
    end
 end
 
-# Redis password is generated as a random hex number:
-node.set[:redis][:requirepass] = SecureRandom.hex
+if node[:redis][:requirepass].empty?
+   # Redis password is generated as a random hex number:
+   node.set[:redis][:requirepass] = SecureRandom.hex
+end
 
 # Holds the encrypted data for all nodes
 node.default_unless[:redis][:secrets] = Hash.new
