@@ -45,9 +45,9 @@ if node[:redis][:ulimit]
    end
 end
 
-if node[:redis][:requirepass].empty?
+unless node[:redis][:requirepass]
    # Redis password is generated as a random hex number:
-   node.set[:redis][:requirepass] = SecureRandom.hex
+   node.set[:redis][:srvpasswd] = SecureRandom.hex
 
    # Holds the encrypted data for all nodes
    node.default_unless[:redis][:secrets] = Hash.new
@@ -55,7 +55,7 @@ if node[:redis][:requirepass].empty?
    # Search for all nodes sharing the secret
    search(:node,"name:lxmtin*").each do |n|
    # encrypt the secret for each node using the public key
-      node.normal[:redis][:secrets][n.fqdn] = encrypt(node[:redis][:requirepass],n.fqdn)
+      node.normal[:redis][:secrets][n.fqdn] = encrypt(node[:redis][:srvpasswd],n.fqdn)
    end
 end
 
