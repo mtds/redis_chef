@@ -33,7 +33,7 @@ end
 if node[:redis][:vm_overcommit] == 1
   execute "echo 1 > /proc/sys/vm/overcommit_memory" do
     not_if "[ $(cat /proc/sys/vm/overcommit_memory) -eq 1 ]"
-    notifies :restart, resources(:service => "redis"), :delayed
+    notifies :restart, "service[redis-server]", :delayed
   end
 end
 
