@@ -213,7 +213,7 @@ repl-timeout <%= node[:redis][:repl_timeout] %>
 # use a very strong password otherwise it will be very easy to break.
 #
 <% if node[:redis][:requirepass] -%>
-requirepass <%= node[:redis][:requirepass] %>
+requirepass <%= node[:redis][:srvpasswd] %>
 <% else -%>
 # requirepass foobared
 <% end -%>
