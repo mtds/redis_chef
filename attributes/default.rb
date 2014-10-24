@@ -47,6 +47,7 @@ default[:redis][:slave_serve_stale_data] = "yes"
 default[:redis][:repl_ping_slave_period] = 10
 default[:redis][:repl_timeout] = 60
 default[:redis][:requirepass] = false
+default[:redis][:generate_srvpasswd] = false
 default[:redis][:srvpasswd] = String.new
 default[:redis][:rename_command] = false
 default[:redis][:maxclients] = 1024
