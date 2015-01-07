@@ -1,3 +1,4 @@
+name             "redis"
 maintainer       "GSI HPC Team"
 maintainer_email "hpc@gsi.de"
 license          "All rights reserved"
