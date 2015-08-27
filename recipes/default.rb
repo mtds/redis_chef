@@ -7,10 +7,6 @@
 # All rights reserved - Do Not Redistribute
 #
 
-class Chef::Recipe
-  include Sys::Secret
-end
-
 package "redis-server"
 
 user node[:redis][:user] do
@@ -22,11 +18,6 @@ end
 directory node[:redis][:datadir] do
   owner node[:redis][:user]
   mode "0750"
-end
-
-service "redis-server" do
-  supports :reload => false, :restart => true, :start => true, :stop => true
-  action [ :enable, :start ]
 end
 
 # Check/Set the overcommit of the virtual memory:
@@ -42,23 +33,6 @@ if node[:redis][:ulimit]
    template "#{node[:redis][:ulimit_file]}" do
      source "debian_default.erb"
      mode "0644"
-   end
-end
-
-if node[:redis][:requirepass]
-
-   # If requested the Redis server password is generated as a random hex number:
-   if node[:redis][:generate_srvpasswd]
-      node.set[:redis][:srvpasswd] = SecureRandom.hex
-   end
-
-   # Holds the encrypted data for all nodes
-   node.default_unless[:redis][:secrets] = Hash.new
-
-   # Search for all nodes sharing the secret
-   search(:node,"name:lxmtin*").each do |n|
-   # encrypt the secret for each node using the public key
-      node.normal[:redis][:secrets][n.fqdn] = encrypt(node[:redis][:srvpasswd],n.fqdn)
    end
 end
 
@@ -80,3 +54,10 @@ else
   end
 
 end
+
+service "redis-server" do
+  supports :reload => false, :restart => true, :start => true, :stop => true
+  action [ :enable, :start ]
+end
+
+
