@@ -51,6 +51,7 @@ default[:redis][:rename_command] = false
 default[:redis][:maxclients] = 1024
 default[:redis][:appendonly] = "no"
 default[:redis][:appendfsync] = "everysec"
+default[:redis][:tcp_keepalive] = 60
 #
 # Redis VirtualMemory overcommit:
 # (refer to: http://redis.io/topics/faq)
