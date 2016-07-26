@@ -71,7 +71,7 @@ timeout <%= node[:redis][:timeout] %>
 # On other kernels the period depends on the kernel configuration.
 #
 # A reasonable value for this option is 60 seconds.
-tcp-keepalive 0
+tcp-keepalive <%= node[:redis][:tcp_keepalive] %>
 
 # Specify the server verbosity level.
 # This can be one of:
