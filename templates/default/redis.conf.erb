@@ -273,7 +273,7 @@ repl-disable-tcp-nodelay no
 #
 # The backlog is only allocated once there is at least a slave connected.
 #
-# repl-backlog-size 1mb
+repl-backlog-size <%= node['redis']['repl_backlog_size'] %>
 
 # After a master has no longer connected slaves for some time, the backlog
 # will be freed. The following option configures the amount of seconds that
@@ -282,7 +282,7 @@ repl-disable-tcp-nodelay no
 #
 # A value of 0 means to never release the backlog.
 #
-# repl-backlog-ttl 3600
+repl-backlog-ttl <%= node['redis']['repl_backlog_ttl'] %>
 
 # The slave priority is an integer number published by Redis in the INFO output.
 # It is used by Redis Sentinel in order to select a slave to promote into a
